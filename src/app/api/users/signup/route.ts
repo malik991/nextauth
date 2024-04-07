@@ -13,9 +13,7 @@ connect();
 export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
-    console.log("req body: " + reqBody);
     const { userName, email, password } = reqBody;
-    console.log(userName, email, password);
 
     // check user exist
     const user = await User.findOne({ email });
@@ -25,7 +23,6 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-    console.log("user exist: ", user);
 
     const salt = await bcryptjs.genSalt(10);
     const hashPassword = await bcryptjs.hash(password, salt);
@@ -36,14 +33,7 @@ export async function POST(request: NextRequest) {
       email,
       password: hashPassword,
     });
-    console.log(newUser);
-    // const newUser = new User({
-    //   email,
-    //   userName,
-    //   password: hashPassword,
-    // });
-    // console.log(newUser);
-    // await newUser.save();
+    //console.log(newUser);
 
     //send email for varification
     const emailObject: emailInterface = {

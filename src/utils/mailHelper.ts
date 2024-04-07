@@ -15,14 +15,18 @@ export const sendEmail = async ({
     const hashedToken = await bcryptJs.hash(userId.toString(), 10); // can use uuidv4 npm
     // select which type of email
     if (emailType === "VERIFY") {
-      await User.findByIdAndDelete(userId, {
-        verifyToken: hashedToken,
-        verifyTokenExpiry: Date.now() + 3600000,
+      await User.findByIdAndUpdate(userId, {
+        $set: {
+          verifyToken: hashedToken,
+          verifyTokenExpiry: Date.now() + 3600000,
+        },
       });
     } else if (emailType === "RESET") {
-      await User.findByIdAndDelete(userId, {
-        forgotPasswordToken: hashedToken,
-        forgotPasswordExpiry: Date.now() + 3600000,
+      await User.findByIdAndUpdate(userId, {
+        $set: {
+          forgotPasswordToken: hashedToken,
+          forgotPasswordExpiry: Date.now() + 3600000,
+        },
       });
     }
 
