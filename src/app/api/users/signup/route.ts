@@ -1,6 +1,7 @@
 // in next js every function needs a db connection becuase every function deploy
 // as a servelrless function and theydo not know either it have dn connectio or not
-import { connect } from "@/dBConnection/dbConfig";
+//import { connect } from "@/dBConnection/dbConfig";
+import "@/dBConnection/dbSetup";
 import User from "@/models/user.model";
 import { NextRequest, NextResponse } from "next/server"; // for get data and send data
 import bcryptjs from "bcryptjs";
@@ -8,7 +9,7 @@ import { sendEmail } from "@/utils/mailHelper";
 import { emailInterface } from "@/utils/interfaces";
 
 // cooncet to the DB
-connect();
+//connect();
 // now we define the POST endpoint in next
 export async function POST(request: NextRequest) {
   try {

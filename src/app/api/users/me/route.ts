@@ -1,9 +1,10 @@
 import { getDataFromToken } from "@/utils/getDataFromToken";
-import { connect } from "@/dBConnection/dbConfig";
+//import { connect } from "@/dBConnection/dbConfig";
+import "@/dBConnection/dbSetup";
 import User from "@/models/user.model";
 import { NextRequest, NextResponse } from "next/server";
 
-connect();
+//connect();
 
 export async function GET(request: NextRequest) {
   try {

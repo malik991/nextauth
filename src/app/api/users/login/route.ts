@@ -1,10 +1,11 @@
-import { connect } from "@/dBConnection/dbConfig";
+//import { connect } from "@/dBConnection/dbConfig";
+import "@/dBConnection/dbSetup";
 import User from "@/models/user.model";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-connect();
+//connect();
 
 export async function POST(request: NextRequest) {
   try {
